@@ -8,15 +8,15 @@ export function theNet({ ns, start = "home", pattern = ".*" }) {
         let cur = frontier.pop();
         if (!seen.has(cur.name)) {
             seen.add(cur.name);
-        }
-
-        for (const host of ns.scan(cur.name)) {
-            if (!seen.has(host)) {
-                let path = Array.from(cur.path);
-                let node = { name: host, path: path.concat(host) };
-                frontier.push(node);
-                if (host.match(pattern)) {
-                    res.push(node);
+            
+            for (const host of ns.scan(cur.name)) {
+                if (!seen.has(host)) {
+                    let path = Array.from(cur.path);
+                    let node = { name: host, path: path.concat(host) };
+                    frontier.push(node);
+                    if (host.match(pattern)) {
+                        res.push(node);
+                    }
                 }
             }
         }
