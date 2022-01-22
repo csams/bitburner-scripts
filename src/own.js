@@ -33,11 +33,8 @@ function getOwnable(ns) {
 
 /** @param {NS} ns **/
 export async function main(ns) {
-    let ownable = getOwnable(ns);
-    if(ownable.length > 0) {
-        for (const host of ownable) {
-            openPorts(ns, host.name);
-            ns.nuke(host.name);
-        }
+    for (const host of getOwnable(ns)) {
+        openPorts(ns, host.name);
+        ns.nuke(host.name);
     }
 }
